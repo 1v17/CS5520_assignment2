@@ -1,7 +1,7 @@
 const colors = {
     primary: 'cornflowerblue',
     secondary: 'midnightblue',
-    mainBackground: 'seashell',
+    lightBackground: 'seashell',
     headerBackground: 'peachpuff',
     headerText: 'midnightblue',
     warningButton: 'coral',
