@@ -19,6 +19,11 @@ function BottomTabs() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        tabBarStyle: {
+          backgroundColor: Colors.headerBackground,
+        },
+        tabBarActiveTintColor: Colors.tabActive,
+        tabBarInactiveTintColor: Colors.tabInactive,
       }}
     >
       <Tab.Screen 
@@ -26,8 +31,16 @@ function BottomTabs() {
         component={ActivityScreen} 
         options={{ title: 'Activities' }}
       />
-      <Tab.Screen name="DietScreen" component={DietScreen} />
-      <Tab.Screen name="SettingScreen" component={SettingScreen} />
+      <Tab.Screen 
+        name="DietScreen" 
+        component={DietScreen} 
+        options={{ title: 'Diet' }}
+      />
+      <Tab.Screen 
+        name="SettingScreen" 
+        component={SettingScreen} 
+        options={{ title: 'Settings' }}
+      />
     </Tab.Navigator>
   );
 }

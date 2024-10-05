@@ -3,8 +3,9 @@ const colors = {
     secondary: 'midnightblue',
     lightBackground: 'seashell',
     headerBackground: 'peachpuff',
-    headerText: 'midnightblue',
-    warningButton: 'coral',
+    headerText: 'coral',
+    tabActive: 'coral',
+    tabInactive: 'cornflowerblue',
     mainButton: 'royalblue',
 };
 
