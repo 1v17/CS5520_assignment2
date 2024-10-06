@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';
@@ -11,7 +12,7 @@ function BottomTabs() {
   return (
     <Tab.Navigator
       initialRouteName="ActivityScreen"
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerStyle: {
           backgroundColor: Colors.headerBackground,
         },
@@ -24,7 +25,24 @@ function BottomTabs() {
         },
         tabBarActiveTintColor: Colors.tabActive,
         tabBarInactiveTintColor: Colors.tabInactive,
-      }}
+        tabBarLabelStyle: {
+          fontWeight: 'bold',
+          fontSize: 10,
+        },
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'ActivityScreen') {
+            iconName = focused ? 'accessibility' : 'accessibility-outline';
+          } else if (route.name === 'DietScreen') {
+            iconName = focused ? 'fast-food' : 'fast-food-outline';
+          } else if (route.name === 'SettingScreen') {
+            iconName = focused ? 'settings' : 'settings-outline';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
     >
       <Tab.Screen 
         name="ActivityScreen" 
