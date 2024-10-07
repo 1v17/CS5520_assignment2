@@ -1,11 +1,24 @@
-import { View, Text } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
+import { useContext } from 'react'
+
+import Colors from '../constants/Colors'
+import ScreenBackground from '../components/ScreenBackground'
+import { ThemeContext } from '../context/ThemeContext'
 
 const SettingScreen = () => {
+
+  const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <View>
-      <Text>Settings</Text>
-    </View>
+    <ScreenBackground>
+      <View>
+        <Button 
+          title="Toggle Theme" 
+          onPress={toggleTheme}
+        />
+      </View>
+    </ScreenBackground>
   )
 }
 

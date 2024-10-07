@@ -1,11 +1,15 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
+import ScreenBackground from '../components/ScreenBackground'
+
 const DietScreen = () => {
   return (
-    <View>
-      <Text>DietScreen</Text>
-    </View>
+    <ScreenBackground>
+      <View>
+        <Text>DietScreen</Text>
+      </View>
+    </ScreenBackground>
   )
 }
 
