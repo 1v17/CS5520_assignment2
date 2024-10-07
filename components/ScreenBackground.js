@@ -7,12 +7,10 @@ import { ThemeContext } from '../context/ThemeContext'
 
 const ScreenBackground = ({children}) => {
 
-  const { isDarkTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={[styles.container, 
-                  isDarkTheme && {backgroundColor: Colors.darkBackground}]} 
-    >
+    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]} >
       {children}
     </View>
   )

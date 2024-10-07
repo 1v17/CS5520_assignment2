@@ -1,6 +1,8 @@
 
 import { createContext, useState } from 'react';
 
+import Colors from '../constants/Colors';
+
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
@@ -9,9 +11,17 @@ const ThemeProvider = ({ children }) => {
     function toggleTheme() {
         setIsDarkTheme((prevTheme) => !prevTheme);
     }
+
+    const theme = isDarkTheme ? 
+        {foregroundColor: Colors.lightBackground, 
+          backgroundColor: Colors.darkBackground,
+          primaryColor: Colors.secondary,} 
+      : {foregroundColor: Colors.darkBackground, 
+          backgroundColor: Colors.lightBackground,
+          primaryColor: Colors.primary,};
   
     return (
-      <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
         {children}
       </ThemeContext.Provider>
     );

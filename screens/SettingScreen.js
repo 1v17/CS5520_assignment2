@@ -8,7 +8,7 @@ import { ThemeContext } from '../context/ThemeContext'
 
 const SettingScreen = () => {
 
-  const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <ScreenBackground>
@@ -17,7 +17,7 @@ const SettingScreen = () => {
           <Button 
             title="Toggle Theme" 
             onPress={toggleTheme}
-            color={isDarkTheme ? Colors.secondary: Colors.primary}
+            color={theme.primaryColor}
           />
         </View>
       </View>
