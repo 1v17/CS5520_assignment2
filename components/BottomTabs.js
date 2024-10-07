@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native';
 
 import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';
@@ -9,6 +11,9 @@ import Colors from '../constants/Colors';
 const Tab = createBottomTabNavigator();
 
 function BottomTabs() {
+
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       initialRouteName="ActivityScreen"
@@ -47,12 +52,32 @@ function BottomTabs() {
       <Tab.Screen 
         name="ActivityScreen" 
         component={ActivityScreen} 
-        options={{ title: 'Activities' }}
+        options={{ title: 'Activities',
+          headerRight: () => {
+            return (
+              <Button
+                title="Add"
+                onPress={() => navigation.navigate('ActivityEntry')}
+                color={Colors.primary}
+              />
+            );
+          },
+        }}
       />
       <Tab.Screen 
         name="DietScreen" 
         component={DietScreen} 
-        options={{ title: 'Diet' }}
+        options={{ title: 'Diet',
+          headerRight: () => {
+            return (
+              <Button
+                title="Add"
+                onPress={() => navigation.navigate('DietEntry')}
+                color={Colors.primary}
+              />
+            );
+          },
+         }}
       />
       <Tab.Screen 
         name="SettingScreen" 

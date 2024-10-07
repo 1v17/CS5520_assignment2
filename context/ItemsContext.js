@@ -7,7 +7,7 @@ export const ItemsProvider = ({ children }) => {
   // const [activityItems, setActivityItems] = useState([]);
   // For testing:
   const [activityItems, setActivityItems] = useState([
-    {name: 'Running', duration: '30 minutes', date: '1963-11-23'},]);
+    {name: 'Running', duration: '30', date: '1963-11-23'},]);
 
   function addDietItem(item) {
     setDietItems((prevItems) => {

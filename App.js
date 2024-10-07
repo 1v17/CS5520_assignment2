@@ -5,6 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabs from './components/BottomTabs';
 import { ThemeProvider } from './context/ThemeContext';
 import { ItemsProvider } from './context/ItemsContext';
+import ActivityEntry from './screens/ActivityEntry';
+import DietEntry from './screens/DietEntry';
+import Colors from './constants/Colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,10 +16,33 @@ export default function App() {
     <ThemeProvider>
       <ItemsProvider>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            initialRouteName="ButtomTabs"
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: Colors.headerBackground,
+              },
+              headerTintColor: Colors.headerText,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          >
             <Stack.Screen name="ButtomTabs" 
               component={BottomTabs} 
-              options={{ headerShown: false }} 
+              options={{ headerShown: false,
+                title: 'Back'
+               }} 
+            />
+            <Stack.Screen 
+              name="ActivityEntry" 
+              component={ActivityEntry} 
+              options={{ title: 'Add An Activity' }}
+            />
+            <Stack.Screen 
+              name="DietEntry" 
+              component={DietEntry} 
+              options={{ title: 'Add A Diet Entry' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

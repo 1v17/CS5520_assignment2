@@ -14,10 +14,17 @@ const Item = ({item, type}) => {
         <Text style={[styles.label, {color: theme.textColor}]}>
           {(type === "activity") ? item.name : item.description}
         </Text>
-        <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
-          <Text style={[styles.text, {color: theme.foregroundColor}]} >
-            {item.date}
-          </Text>
+        <View style={styles.rightView} >
+          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
+            <Text style={[styles.text, {color: theme.foregroundColor}]} >
+              {item.date}
+            </Text>
+          </View>
+          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
+            <Text style={[styles.text, {color: theme.foregroundColor}]} >
+              {(type === "activity") ? item.duration + ' min' : item.calories}
+            </Text>
+          </View>
         </View>
       </View>
     )
@@ -30,16 +37,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'center',
   },
+  rightView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 10,
+    alignContent: 'center',
+  },
   label: {
-    fontSize: 15,
-    padding: "1%",
+    fontSize: 17,
+    paddingVertical: "1%",
+    fontWeight: 'bold',
   },
   textBox: {
     borderRadius: 5,
   },
   text: {
     fontSize: 15,
-    padding: "1%",
+    paddingVertical: "1%",
+    paddingHorizontal: "2%",
   },
 });
 
