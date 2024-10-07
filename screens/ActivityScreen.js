@@ -3,12 +3,14 @@ import React from 'react'
 
 import Colors from '../constants/Colors'
 import ScreenBackground from '../components/ScreenBackground'
+import ItemsList from '../components/ItemsList'
 
 const ActivityScreen = () => {
+
   return (
     <SafeAreaView style={styles.container}>
       <ScreenBackground>
-        <FlatList />
+        <ItemsList />
       </ScreenBackground>
     </SafeAreaView>
   )

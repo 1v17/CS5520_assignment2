@@ -4,7 +4,10 @@ export const ItemsContext = createContext();
 
 export const ItemsProvider = ({ children }) => {
   const [dietItems, setDietItems] = useState([]);
-  const [exerciseItems, setExerciseItems] = useState([]);
+  // const [activityItems, setActivityItems] = useState([]);
+  // For testing:
+  const [activityItems, setActivityItems] = useState([
+    {name: 'Running', duration: '30 minutes', date: '1963-11-23'},]);
 
   function addDietItem(item) {
     setDietItems((prevItems) => {
@@ -12,17 +15,17 @@ export const ItemsProvider = ({ children }) => {
     });
   }
 
-  function addExerciseItem(item) {
-    setExerciseItems((prevItems) => {
+  function addActivityItem(item) {
+    setActivityItems((prevItems) => {
       return [...prevItems, item];
     });
   }
 
   const value = {
     dietItems,
-    exerciseItems,
+    activityItems,
     addDietItem,
-    addExerciseItem,
+    addActivityItem,
   };
 
   return (
