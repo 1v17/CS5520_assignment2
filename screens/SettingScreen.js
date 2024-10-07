@@ -12,14 +12,29 @@ const SettingScreen = () => {
 
   return (
     <ScreenBackground>
-      <View>
-        <Button 
-          title="Toggle Theme" 
-          onPress={toggleTheme}
-        />
+      <View style={styles.container} >
+        <View style={styles.buttonWrapper}>
+          <Button 
+            title="Toggle Theme" 
+            onPress={toggleTheme}
+            color={isDarkTheme ? Colors.secondary: Colors.primary}
+          />
+        </View>
       </View>
     </ScreenBackground>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  buttonWrapper: {
+    width: '50%',
+    alignSelf: 'center',
+  }
+});
 
 export default SettingScreen
