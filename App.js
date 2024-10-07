@@ -4,20 +4,23 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import BottomTabs from './components/BottomTabs';
 import { ThemeProvider } from './context/ThemeContext';
+import { ItemsProvider } from './context/ItemsContext';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="ButtomTabs" 
-            component={BottomTabs} 
-            options={{ headerShown: false }} 
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ItemsProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="ButtomTabs" 
+              component={BottomTabs} 
+              options={{ headerShown: false }} 
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ItemsProvider>
     </ThemeProvider>
   );
 }
