@@ -4,29 +4,33 @@ import { useContext } from 'react'
 
 import Colors from '../constants/Colors'
 import { ItemsContext } from '../context/ItemsContext'
+import { ThemeContext } from '../context/ThemeContext'
+import Item from './Item'
 
 const ItemsList = () => {
 
   const { activityItems } = useContext(ItemsContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <FlatList 
       data={activityItems}
       renderItem={({item}) => {
         return (
-        <View>
-          <Text>{item.name}</Text>
-        </View>
+        <Item type='activity' item={item} />
       )}}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, 
+        {backgroundColor: theme.foregroundColor,}]}
     />
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: Colors.darkBackground,
+    padding: "3%",
+    margin: "5%",
+    borderRadius: 5,
   },
 });
 

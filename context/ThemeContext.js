@@ -15,9 +15,11 @@ const ThemeProvider = ({ children }) => {
     const theme = isDarkTheme ? 
         {foregroundColor: Colors.lightBackground, 
           backgroundColor: Colors.darkBackground,
+          textColor: Colors.darkText,
           primaryColor: Colors.secondary,} 
       : {foregroundColor: Colors.darkBackground, 
           backgroundColor: Colors.lightBackground,
+          textColor: Colors.lightText,
           primaryColor: Colors.primary,};
   
     return (

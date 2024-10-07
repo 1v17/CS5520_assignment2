@@ -3,6 +3,8 @@ const colors = {
     secondary: 'midnightblue',
     lightBackground: 'seashell',
     darkBackground: 'chocolate',
+    lightText: 'seashell',
+    darkText: 'chocolate',
     headerBackground: 'peachpuff',
     headerText: 'coral',
     tabActive: 'coral',
