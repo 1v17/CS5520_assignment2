@@ -1,23 +1,16 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
-import { useContext } from 'react'
 
-import Colors from '../constants/Colors'
-import { ItemsContext } from '../context/ItemsContext'
-import { ThemeContext } from '../context/ThemeContext'
 import Item from './Item'
 
-const ItemsList = () => {
-
-  const { activityItems } = useContext(ItemsContext);
-  const { theme } = useContext(ThemeContext);
+const ItemsList = ({items, type}) => {
 
   return (
     <FlatList 
-      data={activityItems}
+      data={items}
       renderItem={({item}) => {
         return (
-        <Item type='activity' item={item} />
+        <Item type={type} item={item} />
       )}}
       contentContainerStyle={styles.container}
     />

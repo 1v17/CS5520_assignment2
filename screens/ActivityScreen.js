@@ -1,16 +1,19 @@
-import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
+import { useContext } from 'react'
 
-import Colors from '../constants/Colors'
+import { ItemsContext } from '../context/ItemsContext'
 import ScreenBackground from '../components/ScreenBackground'
 import ItemsList from '../components/ItemsList'
 
 const ActivityScreen = () => {
 
+  const { activityItems } = useContext(ItemsContext);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScreenBackground>
-        <ItemsList />
+        <ItemsList items={activityItems} type='activity' />
       </ScreenBackground>
     </SafeAreaView>
   )
