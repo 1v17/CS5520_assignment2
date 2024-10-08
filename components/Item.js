@@ -34,6 +34,7 @@ const Item = ({item, type}) => {
 
 const styles = StyleSheet.create({
   container:{
+    margin: "2%",
     padding: "2%",
     flex: 1,
     flexDirection: 'row',

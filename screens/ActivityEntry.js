@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, Button, TextInput, Keyboard,
-   TouchableWithoutFeedback, Platform } from 'react-native'
+   TouchableWithoutFeedback, Alert } from 'react-native'
 import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DateTimePicker from '@react-native-community/datetimepicker'
+import { useNavigation } from '@react-navigation/native';
 
 import ScreenBackground from '../components/ScreenBackground'
 import Colors from '../constants/Colors'
@@ -12,6 +13,7 @@ import { ThemeContext } from '../context/ThemeContext'
 
 const ActivityEntry = () => {
 
+  const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const { addActivityItem } = useContext(ItemsContext);
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
@@ -30,6 +32,7 @@ const ActivityEntry = () => {
   const [date, setDate] = useState(new Date()); // current date
   const [dateText, setDateText] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const navigation = useNavigation();
 
   function onChangeDate(event, selectedDate) {
     const currentDate = selectedDate || new Date();
@@ -39,8 +42,13 @@ const ActivityEntry = () => {
   }
 
   function handleSave() {
-    console.log('Activity Added:', {name, duration, date});
-    addActivityItem({name, duration, date});
+    if (name && validDuration.test(duration) && date) {
+      addActivityItem({name, duration, date});
+      navigation.navigate("ButtomTabs");
+    } else {
+      Alert.alert('Invalid Entry', 
+        'Please make sure all fields are filled out correctly.');
+    }
   }
 
   return (
