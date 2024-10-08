@@ -38,9 +38,9 @@ const ActivityEntry = () => {
     setDateText(currentDate.toDateString());
   }
 
-  function dismissInput() {
-    Keyboard.dismiss;
-    setShowDatePicker(false);
+  function handleSave() {
+    console.log('Activity Added:', {name, duration, date});
+    addActivityItem({name, duration, date});
   }
 
   return (
@@ -98,7 +98,7 @@ const ActivityEntry = () => {
           <View style={styles.buttonSection} >
             <Button 
               title="Save" 
-              onPress={() => alert('Activity Added')}
+              onPress={handleSave}
               color={Colors.primaryColor}
             />
           </View>

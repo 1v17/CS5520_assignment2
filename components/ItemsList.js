@@ -19,18 +19,14 @@ const ItemsList = () => {
         return (
         <Item type='activity' item={item} />
       )}}
-      contentContainerStyle={[styles.container, 
-        {backgroundColor: theme.foregroundColor,}]}
+      contentContainerStyle={styles.container}
     />
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.darkBackground,
-    padding: "3%",
     margin: "5%",
-    borderRadius: 5,
   },
 });
 

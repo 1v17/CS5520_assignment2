@@ -8,16 +8,18 @@ import Colors from '../constants/Colors'
 const Item = ({item, type}) => {
 
   const { theme } = useContext(ThemeContext);
+  const formattedDate = new Date(item.date).toDateString();
 
     return (
-      <View style={styles.container} >
+      <View style={[styles.container, 
+        {backgroundColor: theme.foregroundColor,}]} >
         <Text style={[styles.label, {color: theme.backgroundColor}]}>
           {(type === "activity") ? item.name : item.description}
         </Text>
         <View style={styles.rightView} >
           <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
             <Text style={[styles.text, {color: theme.primaryColor}]} >
-              {item.date}
+              {formattedDate}
             </Text>
           </View>
           <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
@@ -32,10 +34,12 @@ const Item = ({item, type}) => {
 
 const styles = StyleSheet.create({
   container:{
+    padding: "2%",
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
+    borderRadius: 10,
   },
   rightView: {
     flexDirection: 'row',
