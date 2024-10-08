@@ -15,13 +15,13 @@ const Item = ({item, type}) => {
           {(type === "activity") ? item.name : item.description}
         </Text>
         <View style={styles.rightView} >
-          <View style={[styles.textBox, {backgroundColor: theme.primaryColor}]} >
-            <Text style={[styles.text, {color: theme.backgroundColor}]} >
+          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
+            <Text style={[styles.text, {color: theme.primaryColor}]} >
               {item.date}
             </Text>
           </View>
-          <View style={[styles.textBox, {backgroundColor: theme.primaryColor}]} >
-            <Text style={[styles.text, {color: theme.backgroundColor}]} >
+          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
+            <Text style={[styles.text, {color: theme.primaryColor}]} >
               {(type === "activity") ? item.duration + ' min' : item.calories}
             </Text>
           </View>

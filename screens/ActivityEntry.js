@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Button, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, StyleSheet, Button, TextInput, Keyboard,
+   TouchableWithoutFeedback, Platform } from 'react-native'
 import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 import ScreenBackground from '../components/ScreenBackground'
 import Colors from '../constants/Colors'
@@ -25,6 +27,21 @@ const ActivityEntry = () => {
   ]);
 
   const [duration, setDuration] = useState('');
+  const [date, setDate] = useState(new Date()); // current date
+  const [dateText, setDateText] = useState('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  function onChangeDate(event, selectedDate) {
+    const currentDate = selectedDate || new Date();
+    setDate(currentDate);
+    setShowDatePicker(false);
+    setDateText(currentDate.toDateString());
+  }
+
+  function dismissInput() {
+    Keyboard.dismiss;
+    setShowDatePicker(false);
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
@@ -59,6 +76,24 @@ const ActivityEntry = () => {
               }}            
             />
             <Text>Date *</Text>
+            <TextInput
+              style={[styles.input, {color: theme.primaryColor}]}
+              value={dateText}
+              onPressIn={() => setShowDatePicker(true)}
+              onBlur={() => {
+                setShowDatePicker(false);
+                onChangeDate(null, date);
+              }}
+              showSoftInputOnFocus={false}
+            />
+            {showDatePicker && (
+              <DateTimePicker
+                value={date}
+                mode='date'
+                display="inline"
+                onChange={onChangeDate}
+              />
+            )}
           </View>
           <View style={styles.buttonSection} >
             <Button 
@@ -69,7 +104,7 @@ const ActivityEntry = () => {
           </View>
         </ScreenBackground>
       </View>
-    </TouchableWithoutFeedback>   
+    </TouchableWithoutFeedback>
   )
 }
 
