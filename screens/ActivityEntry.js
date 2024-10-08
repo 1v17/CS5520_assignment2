@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, Button, TextInput, Keyboard,
 import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
-import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from '@react-navigation/native';
 
 import ScreenBackground from '../components/ScreenBackground'
 import ButtonPair from '../components/ButtonPair'
 import Colors from '../constants/Colors'
+import DateInput from '../components/DateInput'
 import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
 
@@ -31,19 +31,14 @@ const ActivityEntry = () => {
 
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date()); // current date
-  const [dateText, setDateText] = useState('');
-  const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
 
-  function onChangeDate(event, selectedDate) {
-    const currentDate = selectedDate || new Date();
-    setDate(currentDate);
-    setShowDatePicker(false);
-    setDateText(currentDate.toDateString());
+  function handleChangeDate(selectedDate) {
+    setDate(selectedDate);
   }
 
   function handleSave() {
-    if (name && validDuration.test(duration) && date) {
+    if (name && validDuration.test(duration) && date <= new Date()) {
       addActivityItem({name, duration, date});
       navigation.navigate("ActivityScreen");
     } else {
@@ -87,28 +82,13 @@ const ActivityEntry = () => {
                 setDuration(changedText);
               }}            
             />
-            {/*TODO: separate this into a separate component*/}
             <Text style={[styles.inputLabel, {color: theme.textColor}]} >
               Date *
             </Text>
-            <TextInput
-              style={[styles.input, {color: theme.primaryColor}]}
-              value={dateText}
-              onPressIn={() => setShowDatePicker(true)}
-              onBlur={() => {
-                setShowDatePicker(false);
-                onChangeDate(null, date);
-              }}
-              showSoftInputOnFocus={false}
+            <DateInput 
+              date={date} 
+              changeDateHandler={handleChangeDate} 
             />
-            {showDatePicker && (
-              <DateTimePicker
-                value={date}
-                mode='date'
-                display="inline"
-                onChange={onChangeDate}
-              />
-            )}
           </View>
           <View style={styles.buttonSection} >
             <ButtonPair
@@ -150,13 +130,6 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     padding: "1%",
   },
-  buttonWrapper: {
-    marginVertical: 10,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    gap: 20,
-  }
 });
 
 export default ActivityEntry
