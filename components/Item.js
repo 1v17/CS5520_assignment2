@@ -11,17 +11,17 @@ const Item = ({item, type}) => {
 
     return (
       <View style={styles.container} >
-        <Text style={[styles.label, {color: theme.textColor}]}>
+        <Text style={[styles.label, {color: theme.backgroundColor}]}>
           {(type === "activity") ? item.name : item.description}
         </Text>
         <View style={styles.rightView} >
-          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
-            <Text style={[styles.text, {color: theme.foregroundColor}]} >
+          <View style={[styles.textBox, {backgroundColor: theme.primaryColor}]} >
+            <Text style={[styles.text, {color: theme.backgroundColor}]} >
               {item.date}
             </Text>
           </View>
-          <View style={[styles.textBox, {backgroundColor: theme.backgroundColor}]} >
-            <Text style={[styles.text, {color: theme.foregroundColor}]} >
+          <View style={[styles.textBox, {backgroundColor: theme.primaryColor}]} >
+            <Text style={[styles.text, {color: theme.backgroundColor}]} >
               {(type === "activity") ? item.duration + ' min' : item.calories}
             </Text>
           </View>

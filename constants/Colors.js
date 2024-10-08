@@ -10,7 +10,8 @@ const colors = {
     tabActive: 'coral',
     tabInactive: 'cornflowerblue',
     mainButton: 'royalblue',
-    cardBackground: 'sienna',
+    inputBackground: 'white',
+    inputBorder: 'black',
 };
 
 export default colors;
