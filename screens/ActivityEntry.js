@@ -44,7 +44,7 @@ const ActivityEntry = () => {
   function handleSave() {
     if (name && validDuration.test(duration) && date) {
       addActivityItem({name, duration, date});
-      navigation.navigate("ButtomTabs");
+      navigation.navigate("ActivityScreen");
     } else {
       Alert.alert('Invalid Entry', 
         'Please make sure all fields are filled out correctly.');
@@ -56,7 +56,9 @@ const ActivityEntry = () => {
       <View style={styles.container} >
         <ScreenBackground>
           <View style={styles.inputSection} >
-            <Text>Activity *</Text>
+            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+              Activity *
+            </Text>
             <>
               <DropDownPicker
                 open={open}
@@ -72,18 +74,21 @@ const ActivityEntry = () => {
                 hideSelectedItemIcon={true}
               />
             </>
-            <Text>Duration (min) *</Text>
+            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+              Duration (min) *
+            </Text>
             <TextInput
               style={[styles.input, {color: theme.primaryColor}]}
               keyboardType="numeric"
-              autoFocus={true}
               value={duration}
               blurOnSubmit={true}
               onChangeText={function (changedText) {
                 setDuration(changedText);
               }}            
             />
-            <Text>Date *</Text>
+            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+              Date *
+            </Text>
             <TextInput
               style={[styles.input, {color: theme.primaryColor}]}
               value={dateText}
@@ -104,11 +109,18 @@ const ActivityEntry = () => {
             )}
           </View>
           <View style={styles.buttonSection} >
-            <Button 
-              title="Save" 
-              onPress={handleSave}
-              color={Colors.primaryColor}
-            />
+            <View style={styles.buttonWrapper}>
+              <Button
+                title="Cancel"
+                onPress={() => navigation.goBack()}
+                color={theme.primaryColor}
+              />
+              <Button 
+                title="Save" 
+                onPress={handleSave}
+                color={theme.primaryColor}
+              />
+            </View>
           </View>
         </ScreenBackground>
       </View>
@@ -130,6 +142,8 @@ const styles = StyleSheet.create({
   },
   buttonSection: {
     flex: 1,
+    justifyContent: 'center',
+    alighContent: 'center',
   },
   input: {
     height: 45,
@@ -139,6 +153,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputBackground,
     padding: "3%",
   },
+  inputLabel:{
+    marginTop: "5%",
+    padding: "1%",
+  },
+  buttonWrapper: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    gap: 20,
+  }
 });
 
 export default ActivityEntry

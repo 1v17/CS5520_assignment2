@@ -19,7 +19,7 @@ const ThemeProvider = ({ children }) => {
           primaryColor: Colors.secondary,} 
       : {foregroundColor: Colors.darkBackground, 
           backgroundColor: Colors.lightBackground,
-          textColor: Colors.darkText,
+          textColor: Colors.secondary,
           primaryColor: Colors.primary,};
   
     return (
