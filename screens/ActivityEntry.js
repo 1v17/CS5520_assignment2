@@ -28,14 +28,21 @@ const ActivityEntry = () => {
     <ScreenBackground>
       <View style={styles.inputSection} >
         <Text>Activity*</Text>
-        <DropDownPicker
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-        />
+        <>
+          <DropDownPicker
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            placeholder="Select An Activity"
+            textStyle={{
+              color: theme.primaryColor,
+            }}
+            hideSelectedItemIcon={true}
+          />
+        </>
         <Text>Duration (min)*</Text>
       </View>
       <View style={styles.buttonSection} >
