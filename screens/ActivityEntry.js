@@ -7,6 +7,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from '@react-navigation/native';
 
 import ScreenBackground from '../components/ScreenBackground'
+import ButtonPair from '../components/ButtonPair'
 import Colors from '../constants/Colors'
 import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
@@ -86,6 +87,7 @@ const ActivityEntry = () => {
                 setDuration(changedText);
               }}            
             />
+            {/*TODO: separate this into a separate component*/}
             <Text style={[styles.inputLabel, {color: theme.textColor}]} >
               Date *
             </Text>
@@ -109,18 +111,9 @@ const ActivityEntry = () => {
             )}
           </View>
           <View style={styles.buttonSection} >
-            <View style={styles.buttonWrapper}>
-              <Button
-                title="Cancel"
-                onPress={() => navigation.goBack()}
-                color={theme.primaryColor}
-              />
-              <Button 
-                title="Save" 
-                onPress={handleSave}
-                color={theme.primaryColor}
-              />
-            </View>
+            <ButtonPair
+              saveHandler={handleSave}
+            />
           </View>
         </ScreenBackground>
       </View>
