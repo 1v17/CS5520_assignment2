@@ -44,7 +44,7 @@ const DietEntry = () => {
             Description *
           </Text>
           <TextInput
-            style={[styles.input, {color: theme.primaryColor}]}
+            style={[styles.input, {color: theme.primaryColor, height: 135}]}
             value={description}
             keyboardType="default"
             blurOnSubmit={true}
