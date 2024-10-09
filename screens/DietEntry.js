@@ -24,7 +24,7 @@ const DietEntry = () => {
   function handleSave() {
     if (description && validCalories.test(calories) && date <= new Date()) {
       addDietItem({description, calories, date});
-      navigation.navigate("DietScreen");
+      navigation.goBack();
     } else {
       Alert.alert('Invalid Entry', 
         'Please make sure all fields are filled out correctly.');

@@ -9,7 +9,6 @@ const colors = {
     headerText: 'coral',
     tabActive: 'coral',
     tabInactive: 'cornflowerblue',
-    mainButton: 'royalblue',
     inputBackground: 'white',
     inputBorder: 'black',
 };
