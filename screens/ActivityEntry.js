@@ -40,7 +40,7 @@ const ActivityEntry = () => {
   function handleSave() {
     if (name && validDuration.test(duration) && date <= new Date()) {
       addActivityItem({name, duration, date});
-      navigation.navigate("ActivityScreen");
+      navigation.goBack();
     } else {
       Alert.alert('Invalid Entry', 
         'Please make sure all fields are filled out correctly.');
