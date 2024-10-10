@@ -2,7 +2,7 @@ import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
 import { useContext } from 'react'
 
-import Colors from '../constants/Colors'
+import Dimensions from '../constants/Dimensions'
 import ScreenBackground from '../components/ScreenBackground'
 import { ThemeContext } from '../context/ThemeContext'
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonWrapper: {
-    width: '50%',
+    width: Dimensions.buttonWidth,
     alignSelf: 'center',
   }
 });

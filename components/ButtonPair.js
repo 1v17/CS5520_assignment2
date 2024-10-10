@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 import { ThemeContext } from '../context/ThemeContext'
+import Spacings from '../constants/Spacings';
 
 const ButtonPair = ({saveHandler}) => {
 
@@ -28,11 +29,11 @@ const ButtonPair = ({saveHandler}) => {
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    marginVertical: 10,
+    marginVertical: Spacings.mediumMargin,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    gap: 20,
+    gap: Spacings.mediumGap,
   }
 });
 

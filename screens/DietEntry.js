@@ -10,6 +10,8 @@ import Colors from '../constants/Colors'
 import DateInput from '../components/DateInput'
 import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
+import Spacings from '../constants/Spacings';
+import Dimensions from '../constants/Dimensions';
 
 const DietEntry = () => {
 
@@ -45,7 +47,7 @@ const DietEntry = () => {
           </Text>
           <TextInput
             style={[styles.input, {color: theme.primaryColor, 
-              height: 135,
+              height: Dimensions.multiLineInputHeight,
               textAlignVertical: 'top'}]}
             value={description}
             keyboardType="default"
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
     alignContent: 'flex-start',
-    padding: '5%',
+    padding: Spacings.widePadding,
   },
   buttonSection: {
     flex: 1,
@@ -104,16 +106,16 @@ const styles = StyleSheet.create({
     alighContent: 'center',
   },
   input: {
-    height: 45,
-    borderWidth: 1,
-    borderRadius: 7,
+    height: Dimensions.singleLineInputHeight,
+    borderWidth: Dimensions.inputBorderWidth,
+    borderRadius: Dimensions.mediumBorderRadius,
     borderColor: Colors.inputBorder,
     backgroundColor: Colors.inputBackground,
-    padding: "3%",
+    padding: Spacings.mediumPadding,
   },
   inputLabel:{
-    marginTop: "5%",
-    padding: "1%",
+    marginTop: Spacings.mediumMargin,
+    padding: Spacings.extraNarrowPadding,
   },
 });
 

@@ -7,6 +7,7 @@ import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';
 import SettingScreen from '../screens/SettingScreen';
 import Colors from '../constants/Colors';
+import TextSizes from '../constants/TextSizes';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ function BottomTabs() {
         tabBarInactiveTintColor: Colors.tabInactive,
         tabBarLabelStyle: {
           fontWeight: 'bold',
-          fontSize: 10,
+          fontSize: TextSizes.extraSmall,
         },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;

@@ -2,6 +2,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 
 import Item from './Item'
+import Spacings from '../constants/Spacings'
 
 const ItemsList = ({items, type}) => {
 
@@ -19,7 +20,7 @@ const ItemsList = ({items, type}) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: "5%",
+    margin: Spacings.mediumMargin,
   },
 });
 

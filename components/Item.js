@@ -4,14 +4,20 @@ import { useContext } from 'react'
 import Entypo from '@expo/vector-icons/Entypo';
 
 import { ThemeContext } from '../context/ThemeContext'
+import Spacings from '../constants/Spacings';
+import Dimensions from '../constants/Dimensions';
+import TextSizes from '../constants/TextSizes';
 
 const Item = ({item, type}) => {
+
+  const longDuration = 60;
+  const largeCalories = 800;
 
   const { theme } = useContext(ThemeContext);
   const formattedDate = new Date(item.date).toDateString();
   const showSpecialMark = (type === "activity") ? 
-    ((item.name === "Running" || item.name === "Weights") && Number(item.duration) > 60) :
-    (Number(item.calories) > 800);
+    ((item.name === "Running" || item.name === "Weights") && Number(item.duration) > longDuration) :
+    (Number(item.calories) > largeCalories);
     return (
       <View style={[styles.container, 
         {backgroundColor: theme.foregroundColor,}]} >
@@ -37,35 +43,35 @@ const Item = ({item, type}) => {
 
 const styles = StyleSheet.create({
   container:{
-    margin: "2%",
-    padding: "2%",
+    margin: Spacings.narrowMargin,
+    padding: Spacings.narrowPadding,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
-    borderRadius: 10,
+    borderRadius: Dimensions.largeBorderRadius,
   },
   rightView: {
     flexDirection: 'row',
-    gap: 10,
+    gap: Spacings.narrowGap,
     justifyContent: 'center', 
     alignContent: 'center',
     alignItems: 'center',
   },
   label: {
-    fontSize: 15,
-    paddingVertical: "2%",
+    fontSize: TextSizes.medium,
+    paddingVertical: Spacings.narrowPadding,
     fontWeight: 'bold',
   },
   textBox: {
-    borderRadius: 5,
+    borderRadius: Dimensions.smallBorderRadius,
     justifyContent: 'center',
     alignContent: 'center',
   },
   text: {
-    fontSize: 13,
-    paddingVertical: "1%",
-    paddingHorizontal: "2%",
+    fontSize: TextSizes.small,
+    paddingVertical: Spacings.extraNarrowPadding,
+    paddingHorizontal: Spacings.narrowPadding,
   },
 });
 
