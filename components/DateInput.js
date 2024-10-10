@@ -30,6 +30,9 @@ const DateInput = ({date, changeDateHandler}) => {
           setShowDatePicker(!showDatePicker)
           setDateText(date.toDateString());
         }}
+        onBlur={() => {
+          setShowDatePicker(false);
+        }}
         showSoftInputOnFocus={false}
       />
       {showDatePicker && (
