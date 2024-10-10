@@ -22,12 +22,12 @@ const DietEntry = () => {
   const [calories, setCalories] = useState('');
 
   function handleSave() {
-    if (description && validCalories.test(calories) && date <= new Date()) {
+    if (description && validCalories.test(calories) && date) {
       addDietItem({description, calories, date});
       navigation.goBack();
     } else {
-      Alert.alert('Invalid Entry', 
-        'Please make sure all fields are filled out correctly.');
+      Alert.alert('Invalid input', 
+        'Please check your input values');
     }
   }
 

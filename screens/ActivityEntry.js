@@ -38,12 +38,12 @@ const ActivityEntry = () => {
   }
 
   function handleSave() {
-    if (name && validDuration.test(duration) && date <= new Date()) {
+    if (name && validDuration.test(duration) && date) {
       addActivityItem({name, duration, date});
       navigation.goBack();
     } else {
-      Alert.alert('Invalid Entry', 
-        'Please make sure all fields are filled out correctly.');
+      Alert.alert('Invalid input', 
+        'Please check your input values');
     }
   }
 
