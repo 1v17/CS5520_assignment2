@@ -5,6 +5,8 @@ import { useState, useContext } from 'react'
 
 import { ThemeContext } from '../context/ThemeContext'
 import Colors from '../constants/Colors'
+import Spacings from '../constants/Spacings'
+import Dimensions from '../constants/Dimensions'
 
 const DateInput = ({date, changeDateHandler}) => {
 
@@ -24,10 +26,9 @@ const DateInput = ({date, changeDateHandler}) => {
       <TextInput
         style={[styles.input, {color: theme.primaryColor}]}
         value={dateText}
-        onPressIn={() => setShowDatePicker(true)}
-        onBlur={() => {
-          setShowDatePicker(false);
-          onChangeDate(null, date);
+        onPressIn={() => {
+          setShowDatePicker(!showDatePicker)
+          setDateText(date.toDateString());
         }}
         showSoftInputOnFocus={false}
       />
@@ -45,12 +46,12 @@ const DateInput = ({date, changeDateHandler}) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 45,
-    borderWidth: 1,
-    borderRadius: 7,
+    height: Dimensions.singleLineInputHeight,
+    borderWidth: Dimensions.inputBorderWidth,
+    borderRadius: Dimensions.mediumBorderRadius,
     borderColor: Colors.inputBorder,
     backgroundColor: Colors.inputBackground,
-    padding: "3%",
+    padding: Spacings.mediumPadding,
   },
 });
 
