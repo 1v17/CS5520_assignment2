@@ -31,18 +31,22 @@ export default function App() {
             <Stack.Screen name="ButtomTabs" 
               component={BottomTabs} 
               options={{ headerShown: false,
-                title: 'Back'
+                title: 'BottomTabs'
                }} 
             />
             <Stack.Screen 
               name="ActivityEntry" 
               component={ActivityEntry} 
-              options={{ title: 'Add An Activity' }}
+              options={{ title: 'Add An Activity',
+                headerBackTitleVisible: false,
+               }}
             />
             <Stack.Screen 
               name="DietEntry" 
               component={DietEntry} 
-              options={{ title: 'Add A Diet Entry' }}
+              options={{ title: 'Add A Diet Entry',
+                headerBackTitleVisible: false,
+               }}
             />
           </Stack.Navigator>
         </NavigationContainer>
