@@ -20,8 +20,9 @@ const Item = ({item, type}) => {
     ((item.name === "Running" || item.name === "Weights") && Number(item.duration) > longDuration) :
     (Number(item.calories) > largeCalories);
     return (
-      <View style={[styles.container, 
-        {backgroundColor: theme.foregroundColor,}]} >
+      <View key={item.id}
+        style={[styles.container, 
+          {backgroundColor: theme.foregroundColor,}]} >
         <Text style={[styles.label, {color: theme.backgroundColor}]}>
           {(type === "activity") ? item.name : item.description}
         </Text>
