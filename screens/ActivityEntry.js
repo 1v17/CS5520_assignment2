@@ -4,6 +4,7 @@ import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
 
 import ScreenBackground from '../components/ScreenBackground'
 import ButtonPair from '../components/ButtonPair'
@@ -36,9 +37,9 @@ const ActivityEntry = () => {
   const [dateText, setDateText] = useState('');
   const navigation = useNavigation();
 
-  function generateRandomId() {
-    return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  }
+  // function generateRandomId() {
+  //   return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  // }
 
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
@@ -47,7 +48,7 @@ const ActivityEntry = () => {
 
   function handleSave() {
     if (name && validDuration.test(duration) && dateText && date) {
-      addActivityItem({name, duration, date, id: generateRandomId()});
+      addActivityItem({name, duration, date, id: uuid.v4()});
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 

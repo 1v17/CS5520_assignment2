@@ -3,6 +3,7 @@ import { View, Text, TouchableWithoutFeedback, StyleSheet,
 import React from 'react'
 import { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
 
 import ScreenBackground from '../components/ScreenBackground'
 import ButtonPair from '../components/ButtonPair'
@@ -24,13 +25,13 @@ const DietEntry = () => {
   const [dateText, setDateText] = useState('');
   const [calories, setCalories] = useState('');
 
-  function generateRandomId() {
-    return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  }
+  // function generateRandomId() {
+  //   return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  // }
 
   function handleSave() {
     if (description && validCalories.test(calories) && dateText && date) {
-      addDietItem({description, calories, date, id: generateRandomId()});
+      addDietItem({description, calories, date, id: uuid.v4()});
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 
