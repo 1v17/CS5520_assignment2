@@ -10,6 +10,12 @@ const ActivityScreen = () => {
 
   const { activityItems } = useContext(ItemsContext);
 
+  function compareByDate(a, b) {
+    return b.date - a.date; // sort by date in descending order
+  }
+
+  activityItems.sort(compareByDate);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScreenBackground>
