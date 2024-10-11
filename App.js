@@ -1,20 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import BottomTabs from './components/BottomTabs';
+import { ThemeProvider } from './context/ThemeContext';
+import { ItemsProvider } from './context/ItemsContext';
+import ActivityEntry from './screens/ActivityEntry';
+import DietEntry from './screens/DietEntry';
+import Colors from './constants/Colors';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider>
+      <ItemsProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="ButtomTabs"
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: Colors.headerBackground,
+              },
+              headerTintColor: Colors.headerText,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          >
+            <Stack.Screen name="ButtomTabs" 
+              component={BottomTabs} 
+              options={{ headerShown: false,
+                title: 'BottomTabs'
+               }} 
+            />
+            <Stack.Screen 
+              name="ActivityEntry" 
+              component={ActivityEntry} 
+              options={{ title: 'Add An Activity',
+                headerBackTitleVisible: false,
+               }}
+            />
+            <Stack.Screen 
+              name="DietEntry" 
+              component={DietEntry} 
+              options={{ title: 'Add A Diet Entry',
+                headerBackTitleVisible: false,
+               }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ItemsProvider>
+    </ThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
