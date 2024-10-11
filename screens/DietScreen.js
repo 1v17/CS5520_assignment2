@@ -10,11 +10,11 @@ const DietScreen = () => {
 
   const { dietItems } = useContext(ItemsContext);
 
-  function compareByDate(a, b) {
-    return b.date - a.date; // sort by date in descending order
-  }
+  // function compareByDate(a, b) {
+  //   return b.date - a.date; // sort by date in descending order
+  // }
 
-  dietItems.sort(compareByDate);
+  // dietItems.sort(compareByDate);
 
   return (
     <SafeAreaView style={styles.container}>
