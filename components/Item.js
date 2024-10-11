@@ -15,6 +15,7 @@ const Item = ({item, type}) => {
 
   const { theme } = useContext(ThemeContext);
   const formattedDate = new Date(item.date).toDateString();
+  // console.log(item);
   const showSpecialMark = (type === "activity") ? 
     ((item.name === "Running" || item.name === "Weights") && Number(item.duration) > longDuration) :
     (Number(item.calories) > largeCalories);

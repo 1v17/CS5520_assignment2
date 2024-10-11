@@ -24,9 +24,13 @@ const DietEntry = () => {
   const [dateText, setDateText] = useState('');
   const [calories, setCalories] = useState('');
 
+  function generateRandomId() {
+    return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  }
+
   function handleSave() {
     if (description && validCalories.test(calories) && dateText && date) {
-      addDietItem({description, calories, date});
+      addDietItem({description, calories, date, id: generateRandomId()});
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 

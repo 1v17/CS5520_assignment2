@@ -36,6 +36,10 @@ const ActivityEntry = () => {
   const [dateText, setDateText] = useState('');
   const navigation = useNavigation();
 
+  function generateRandomId() {
+    return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  }
+
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
     setDateText(selectedDate.toDateString());
@@ -43,7 +47,7 @@ const ActivityEntry = () => {
 
   function handleSave() {
     if (name && validDuration.test(duration) && dateText && date) {
-      addActivityItem({name, duration, date});
+      addActivityItem({name, duration, date, id: generateRandomId()});
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 
