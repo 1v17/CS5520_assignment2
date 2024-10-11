@@ -33,14 +33,16 @@ const ActivityEntry = () => {
 
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date()); // current date
+  const [dateText, setDateText] = useState('');
   const navigation = useNavigation();
 
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
+    setDateText(selectedDate.toDateString());
   }
 
   function handleSave() {
-    if (name && validDuration.test(duration) && date) {
+    if (name && validDuration.test(duration) && dateText && date) {
       addActivityItem({name, duration, date});
       navigation.goBack();
     } else {
@@ -89,6 +91,7 @@ const ActivityEntry = () => {
             </Text>
             <DateInput 
               date={date} 
+              dateText={dateText}
               changeDateHandler={handleChangeDate} 
             />
           </View>

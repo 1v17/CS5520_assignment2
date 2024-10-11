@@ -8,17 +8,15 @@ import Colors from '../constants/Colors'
 import Spacings from '../constants/Spacings'
 import Dimensions from '../constants/Dimensions'
 
-const DateInput = ({date, changeDateHandler}) => {
+const DateInput = ({date, dateText, changeDateHandler}) => {
 
   const { theme } = useContext(ThemeContext);
-  const [dateText, setDateText] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   function onChangeDate(event, selectedDate) {
     const currentDate = selectedDate || new Date();
     changeDateHandler(currentDate);
     setShowDatePicker(false);
-    setDateText(currentDate.toDateString());
   }
 
   return (
@@ -27,8 +25,8 @@ const DateInput = ({date, changeDateHandler}) => {
         style={[styles.input, {color: theme.primaryColor}]}
         value={dateText}
         onPressIn={() => {
-          setShowDatePicker(!showDatePicker)
-          setDateText(date.toDateString());
+          setShowDatePicker(!showDatePicker);
+          changeDateHandler(new Date());
         }}
         onBlur={() => {
           setShowDatePicker(false);

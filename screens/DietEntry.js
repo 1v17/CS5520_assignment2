@@ -21,10 +21,11 @@ const DietEntry = () => {
   const navigation = useNavigation();
   const { addDietItem } = useContext(ItemsContext);
   const [date, setDate] = useState(new Date()); // current date
+  const [dateText, setDateText] = useState('');
   const [calories, setCalories] = useState('');
 
   function handleSave() {
-    if (description && validCalories.test(calories) && date) {
+    if (description && validCalories.test(calories) && dateText && date) {
       addDietItem({description, calories, date});
       navigation.goBack();
     } else {
@@ -35,6 +36,7 @@ const DietEntry = () => {
 
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
+    setDateText(selectedDate.toDateString());
   }
 
   return (
@@ -74,6 +76,7 @@ const DietEntry = () => {
           </Text>
           <DateInput 
             date={date} 
+            dateText={dateText}
             changeDateHandler={handleChangeDate} 
           />
         </View>
