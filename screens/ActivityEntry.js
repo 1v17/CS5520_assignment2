@@ -4,13 +4,11 @@ import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { useNavigation } from '@react-navigation/native';
-import uuid from 'react-native-uuid';
 
 import ScreenBackground from '../components/ScreenBackground'
 import ButtonPair from '../components/ButtonPair'
 import Colors from '../constants/Colors'
 import DateInput from '../components/DateInput'
-import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
 import Dimensions from '../constants/Dimensions';
 import Spacings from '../constants/Spacings';
