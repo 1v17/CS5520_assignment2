@@ -16,7 +16,9 @@ const SettingScreen = () => {
       <View style={styles.container} >
         <View style={styles.buttonWrapper}>
           <PressableButton pressHandler={toggleTheme}>
-            <Text style={{color: theme.backgroundColor}}>Toggle Theme</Text>
+            <Text style={[styles.buttonText, {color: theme.backgroundColor}]}>
+              Toggle Theme
+            </Text>
           </PressableButton>
         </View>
       </View>
@@ -34,7 +36,10 @@ const styles = StyleSheet.create({
     width: Dimensions.buttonWidth,
     height: Dimensions.buttonHeight,
     alignSelf: 'center',
-  }
+  },
+  buttonText: {
+    fontWeight: 'bold',
+  },
 });
 
 export default SettingScreen
