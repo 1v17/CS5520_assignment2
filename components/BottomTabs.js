@@ -22,6 +22,10 @@ function BottomTabs() {
     navigation.navigate('ActivityEntry');
   }
 
+  function handleAddDiet() {
+    navigation.navigate('DietEntry');
+  }
+
   return (
     <Tab.Navigator
       initialRouteName="ActivityScreen"
@@ -89,11 +93,22 @@ function BottomTabs() {
         options={{ title: 'Diet',
           headerRight: () => {
             return (
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('DietEntry')}
-                color={Colors.primary}
-              />
+              <PressableButton 
+                pressHandler={handleAddDiet}
+                componentStyle={styles.headerButtonDefault}
+                pressedStyle={styles.headerButtonPressed}
+              >
+                <Ionicons 
+                  name="add" 
+                  size={Dimensions.headerIconSize} 
+                  color={Colors.headerText}
+                />
+                <Ionicons 
+                  name="fast-food" 
+                  size={Dimensions.headerIconSize} 
+                  color={Colors.headerText}
+                />
+              </PressableButton>
             );
           },
          }}
