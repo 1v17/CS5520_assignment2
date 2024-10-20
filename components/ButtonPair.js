@@ -13,6 +13,7 @@ const ButtonPair = ({saveHandler}) => {
 
   return (
     <View style={styles.buttonWrapper}>
+      {/* TODO: repalce button with pressable */}
       <Button
         title="Cancel"
         onPress={() => navigation.goBack()}

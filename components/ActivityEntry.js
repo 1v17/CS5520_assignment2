@@ -94,6 +94,7 @@ const ActivityEntry = ({
             />
           </View>
           <View style={styles.buttonSection}>
+            {/* TODO: add checkbox here */}
             <ButtonPair saveHandler={saveHandler} />
           </View>
         </ScreenBackground>
