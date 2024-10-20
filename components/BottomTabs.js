@@ -74,12 +74,12 @@ function BottomTabs() {
               >
                 <Ionicons 
                   name="add" 
-                  size={Dimensions.headerIconSize} 
+                  size={Dimensions.iconSize} 
                   color={Colors.headerText}
                 />
                 <Ionicons 
                   name="accessibility" 
-                  size={Dimensions.headerIconSize} 
+                  size={Dimensions.iconSize} 
                   color={Colors.headerText}
                 />
               </PressableButton>
@@ -100,12 +100,12 @@ function BottomTabs() {
               >
                 <Ionicons 
                   name="add" 
-                  size={Dimensions.headerIconSize} 
+                  size={Dimensions.iconSize} 
                   color={Colors.headerText}
                 />
                 <Ionicons 
                   name="fast-food" 
-                  size={Dimensions.headerIconSize} 
+                  size={Dimensions.iconSize} 
                   color={Colors.headerText}
                 />
               </PressableButton>

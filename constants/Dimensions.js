@@ -17,7 +17,7 @@ const Dimensions = {
   hitSlop: 20,
 
   // icons:
-  headerIconSize: 20,
+  iconSize: 20,
 };
   
   export default Dimensions;
