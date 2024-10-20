@@ -125,7 +125,8 @@ function BottomTabs() {
 const styles = StyleSheet.create({
   headerButtonDefault: {
     backgroundColor: Colors.headerBackground,
-    margin: Spacings.mediumMargin,
+    marginVertical: Spacings.narrowMargin,
+    marginHorizontal: Spacings.wideMargin,
   },
   headerButtonPressed: {
     backgroundColor: Colors.headerBackground,
