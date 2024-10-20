@@ -11,6 +11,9 @@ const colors = {
     tabInactive: 'cornflowerblue',
     inputBackground: 'white',
     inputBorder: 'black',
+
+    // opacity
+    itemPressedOpacity: 0.5,
 };
 
 export default colors;

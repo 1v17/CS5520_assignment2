@@ -1,9 +1,10 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { useContext } from 'react'
 
 import Dimensions from '../constants/Dimensions'
 import ScreenBackground from '../components/ScreenBackground'
+import PressableButton from '../components/PressableButton'
 import { ThemeContext } from '../context/ThemeContext'
 
 const SettingScreen = () => {
@@ -14,11 +15,9 @@ const SettingScreen = () => {
     <ScreenBackground>
       <View style={styles.container} >
         <View style={styles.buttonWrapper}>
-          <Button 
-            title="Toggle Theme" 
-            onPress={toggleTheme}
-            color={theme.primaryColor}
-          />
+          <PressableButton pressHandler={toggleTheme}>
+            <Text style={{color: theme.backgroundColor}}>Toggle Theme</Text>
+          </PressableButton>
         </View>
       </View>
     </ScreenBackground>
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     width: Dimensions.buttonWidth,
+    height: Dimensions.buttonHeight,
     alignSelf: 'center',
   }
 });
