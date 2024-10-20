@@ -27,6 +27,7 @@ const ActivityEntry = ({
   changeDurationHandler,
   changeDateHandler,
   saveHandler,
+  showCheckBox=false,
 }) => {
 
   const { theme } = useContext(ThemeContext);
