@@ -3,16 +3,15 @@ import { View, Text, TouchableWithoutFeedback, StyleSheet,
 import React from 'react'
 import { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import uuid from 'react-native-uuid';
 
 import ScreenBackground from '../components/ScreenBackground'
 import ButtonPair from '../components/ButtonPair'
 import Colors from '../constants/Colors'
 import DateInput from '../components/DateInput'
-import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
 import Spacings from '../constants/Spacings';
 import Dimensions from '../constants/Dimensions';
+import { writeToDB } from '../firebase/FirebaseHelper';
 
 const DietEntry = () => {
 
@@ -20,18 +19,13 @@ const DietEntry = () => {
   const { theme } = useContext(ThemeContext);
   const [description, setDescription] = useState('');
   const navigation = useNavigation();
-  const { addDietItem } = useContext(ItemsContext);
   const [date, setDate] = useState(new Date()); // current date
   const [dateText, setDateText] = useState('');
   const [calories, setCalories] = useState('');
 
-  // function generateRandomId() {
-  //   return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  // }
-
   function handleSave() {
     if (description && validCalories.test(calories) && dateText && date) {
-      addDietItem({description, calories, date, id: uuid.v4()});
+      writeToDB({description, calories, date}, 'dietItems');
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 

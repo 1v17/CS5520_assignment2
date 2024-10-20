@@ -1,25 +1,32 @@
 import { SafeAreaView, StyleSheet } from 'react-native'
-import React from 'react'
-import { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
+import { collection, onSnapshot } from 'firebase/firestore'
 
-import { ItemsContext } from '../context/ItemsContext'
 import ScreenBackground from '../components/ScreenBackground'
 import ItemsList from '../components/ItemsList'
+import { database } from '../firebase/FirebaseSetup'
 
 const DietScreen = () => {
 
-  const { dietItems } = useContext(ItemsContext);
+  const [items, setItems] = useState([]);
+  const collectionName = 'dietItems';
 
-  // function compareByDate(a, b) {
-  //   return b.date - a.date; // sort by date in descending order
-  // }
-
-  // dietItems.sort(compareByDate);
+  useEffect( () => {
+    const unsubscribe = onSnapshot(collection(database, collectionName), 
+    (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push({id: doc.id, ...doc.data()});
+      });
+      setItems(items);
+    });
+    return () => unsubscribe(); // Detach the listener
+  }, []); // Set the database listener only once
 
   return (
     <SafeAreaView style={styles.container}>
       <ScreenBackground>
-        <ItemsList items={dietItems} type='diet' />
+        <ItemsList items={items} type='diet' />
       </ScreenBackground>
     </SafeAreaView>
   )
