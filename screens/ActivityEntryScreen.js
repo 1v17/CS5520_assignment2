@@ -1,31 +1,54 @@
-import { Alert } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { Alert } from "react-native";
+import React from "react";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-import { writeToDB } from '../firebase/FirebaseHelper';
-import ActivityEntry from '../components/ActivityEntry';
+import { writeToDB } from "../firebase/FirebaseHelper";
+import ActivityEntry from "../components/ActivityEntry";
 
 const ActivityEntryScreen = () => {
-
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const navigation = useNavigation();
-  const collectionName = 'activityItems';
+  const collectionName = "activityItems";
+  const [name, setName] = useState(null);
+  const [duration, setDuration] = useState("");
+  const [date, setDate] = useState(new Date()); // current date
+  const [dateText, setDateText] = useState("");
 
-  function handleSave(name, duration, date, dateText) {
+  function handleSave() {
     if (name && validDuration.test(duration) && dateText && date) {
-      writeToDB({name, duration, date}, collectionName);
+      writeToDB({ name, duration, date }, collectionName);
       navigation.goBack();
     } else {
-      Alert.alert('Invalid input', 
-        'Please check your input values');
+      Alert.alert("Invalid input", "Please check your input values");
     }
   }
 
+  function handleChangeDate(selectedDate) {
+    setDate(selectedDate);
+    setDateText(selectedDate.toDateString());
+  }
+
+  function handleNameChange(selectedName) {
+    setName(selectedName);
+  }
+
+  function handleDurationChange(selectedDuration) {
+    setDuration(selectedDuration);
+  }
+
   return (
-    <ActivityEntry 
+    <ActivityEntry
+      name={name}
+      duration={duration}
+      date={date}
+      dateText={dateText}
+      changeNameHandler={handleNameChange}
+      changeDurationHandler={handleDurationChange}
+      changeDateHandler={handleChangeDate}
       saveHandler={handleSave}
     />
-  )
-}
+  );
+};
 
-export default ActivityEntryScreen
+export default ActivityEntryScreen;

@@ -1,51 +1,56 @@
-import { View, Text, StyleSheet, TextInput, Keyboard,
-   TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
-import { useContext, useState } from 'react'
-import DropDownPicker from 'react-native-dropdown-picker'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
+import React from "react";
+import { useContext, useState } from "react";
+import DropDownPicker from "react-native-dropdown-picker";
 
-import ScreenBackground from './ScreenBackground'
-import ButtonPair from './ButtonPair'
-import Colors from '../constants/Colors'
-import DateInput from './DateInput'
-import { ThemeContext } from '../context/ThemeContext'
-import Dimensions from '../constants/Dimensions';
-import Spacings from '../constants/Spacings';
+import ScreenBackground from "./ScreenBackground";
+import ButtonPair from "./ButtonPair";
+import Colors from "../constants/Colors";
+import DateInput from "./DateInput";
+import { ThemeContext } from "../context/ThemeContext";
+import Dimensions from "../constants/Dimensions";
+import Spacings from "../constants/Spacings";
 
-const ActivityEntry = ({saveHandler}) => {
+const ActivityEntry = ({
+  name,
+  duration,
+  date,
+  dateText,
+  changeNameHandler,
+  changeDurationHandler,
+  changeDateHandler,
+  saveHandler,
+}) => {
 
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Walking', value: 'Walking'},
-    {label: 'Running', value: 'Running'},
-    {label: 'Swimming', value: 'Swimming'},
-    {label: 'Weights', value: 'Weights'},
-    {label: 'Yoga', value: 'Yoga'},
-    {label: 'Cycling', value: 'Cycling'},
-    {label: 'Hiking', value: 'Hiking'},
+    { label: "Walking", value: "Walking" },
+    { label: "Running", value: "Running" },
+    { label: "Swimming", value: "Swimming" },
+    { label: "Weights", value: "Weights" },
+    { label: "Yoga", value: "Yoga" },
+    { label: "Cycling", value: "Cycling" },
+    { label: "Hiking", value: "Hiking" },
   ]);
 
-  const [duration, setDuration] = useState('');
-  const [date, setDate] = useState(new Date()); // current date
-  const [dateText, setDateText] = useState('');
-
-  function handleChangeDate(selectedDate) {
-    setDate(selectedDate);
-    setDateText(selectedDate.toDateString());
-  }
-
-  function handleSave() {
-    saveHandler(name, duration, date, dateText);
+  function handleDropDownChange(value) {
+    changeNameHandler(value);
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
-      <View style={styles.container} >
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
         <ScreenBackground>
-          <View style={styles.inputSection} >
-            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+          <View style={styles.inputSection}>
+            <Text style={[styles.inputLabel, { color: theme.textColor }]}>
               Activity *
             </Text>
             <>
@@ -54,7 +59,10 @@ const ActivityEntry = ({saveHandler}) => {
                 value={name}
                 items={items}
                 setOpen={setOpen}
-                setValue={setName}
+                setValue={handleDropDownChange}
+                onChangeValue={(selectedName) => {
+                  changeNameHandler(selectedName);
+                }}
                 setItems={setItems}
                 placeholder="Select An Activity"
                 textStyle={{
@@ -63,54 +71,52 @@ const ActivityEntry = ({saveHandler}) => {
                 hideSelectedItemIcon={true}
               />
             </>
-            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+            <Text style={[styles.inputLabel, { color: theme.textColor }]}>
               Duration (min) *
             </Text>
             <TextInput
-              style={[styles.input, {color: theme.primaryColor}]}
+              style={[styles.input, { color: theme.primaryColor }]}
               keyboardType="numeric"
               value={duration}
               blurOnSubmit={true}
               onChangeText={function (changedText) {
-                setDuration(changedText);
-              }}            
+                changeDurationHandler(changedText);
+              }}
             />
-            <Text style={[styles.inputLabel, {color: theme.textColor}]} >
+            <Text style={[styles.inputLabel, { color: theme.textColor }]}>
               Date *
             </Text>
-            <DateInput 
-              date={date} 
+            <DateInput
+              date={date}
               dateText={dateText}
-              changeDateHandler={handleChangeDate} 
+              changeDateHandler={changeDateHandler}
             />
           </View>
-          <View style={styles.buttonSection} >
-            <ButtonPair
-              saveHandler={handleSave}
-            />
+          <View style={styles.buttonSection}>
+            <ButtonPair saveHandler={saveHandler} />
           </View>
         </ScreenBackground>
       </View>
     </TouchableWithoutFeedback>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
+    justifyContent: "center",
+    alignContent: "center",
   },
   inputSection: {
     flex: 3,
-    justifyContent: 'center',
-    alignContent: 'flex-start',
+    justifyContent: "center",
+    alignContent: "flex-start",
     padding: Spacings.widePadding,
   },
   buttonSection: {
     flex: 1,
-    justifyContent: 'center',
-    alighContent: 'center',
+    justifyContent: "center",
+    alighContent: "center",
   },
   input: {
     height: Dimensions.singleLineInputHeight,
@@ -120,10 +126,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputBackground,
     padding: Spacings.mediumPadding,
   },
-  inputLabel:{
+  inputLabel: {
     marginTop: Spacings.mediumMargin,
     padding: Spacings.extraNarrowPadding,
   },
 });
 
-export default ActivityEntry
+export default ActivityEntry;
