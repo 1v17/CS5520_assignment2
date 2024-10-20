@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { Button, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';

@@ -1,12 +1,16 @@
-import { Alert } from "react-native";
-import { useState } from "react";
+import { Alert, StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
 import React from "react";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-import { updateDB } from "../firebase/FirebaseHelper";
+import { deleteFromDB, updateDB } from "../firebase/FirebaseHelper";
 import ActivityEntry from "../components/ActivityEntry";
+import PressableButton from "../components/PressableButton";
+import Colors from "../constants/Colors";
+import Dimensions from "../constants/Dimensions";
+import Spacings from "../constants/Spacings";
 
 const EditActivity = ({ navigation, route }) => {
-
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const collectionName = "activityItems";
   const [name, setName] = useState(route.params.item.name);
@@ -15,6 +19,42 @@ const EditActivity = ({ navigation, route }) => {
   const [dateText, setDateText] = useState(
     route.params.item.date.toDate().toDateString()
   );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <PressableButton
+          pressHandler={handleDeleteAlert}
+          componentStyle={styles.headerButtonDefault}
+          pressedStyle={styles.headerButtonPressed}
+        >
+          <AntDesign
+            name="delete"
+            size={Dimensions.iconSize}
+            color={Colors.headerText}
+          />
+        </PressableButton>
+      ),
+    });
+  }, []);
+
+  function handleDelete() {
+    deleteFromDB(route.params.item.id, collectionName);
+    navigation.goBack();
+  }
+
+  function handleDeleteAlert() {
+    Alert.alert("Delete", "Are you sure you want to delete this item?", [
+      {
+        text: "No",
+        style: "cancel",
+      },
+      {
+        text: "Yes",
+        onPress: handleDelete,
+      },
+    ]);
+  }
 
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
@@ -64,5 +104,17 @@ const EditActivity = ({ navigation, route }) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  headerButtonDefault: {
+    backgroundColor: Colors.headerBackground,
+    marginVertical: Spacings.narrowMargin,
+    maxWidth: Dimensions.iconSize,
+    justifyContent: "flex-end",
+  },
+  headerButtonPressed: {
+    backgroundColor: Colors.headerBackground,
+  },
+});
 
 export default EditActivity;
