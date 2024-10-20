@@ -1,8 +1,7 @@
 import { View, Text, TouchableWithoutFeedback, StyleSheet, 
-  Keyboard, TextInput, Alert } from 'react-native'
+  Keyboard, TextInput } from 'react-native'
 import React from 'react'
 import { useContext, useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
 
 import ScreenBackground from './ScreenBackground'
 import ButtonPair from './ButtonPair'
@@ -11,26 +10,17 @@ import DateInput from './DateInput'
 import { ThemeContext } from '../context/ThemeContext'
 import Spacings from '../constants/Spacings';
 import Dimensions from '../constants/Dimensions';
-import { writeToDB } from '../firebase/FirebaseHelper';
 
-const DietEntry = () => {
+const DietEntry = ({saveHandler}) => {
 
-  const validCalories = /^[1-9]\d*$/; // positive integers without leading zeros
   const { theme } = useContext(ThemeContext);
   const [description, setDescription] = useState('');
-  const navigation = useNavigation();
   const [date, setDate] = useState(new Date()); // current date
   const [dateText, setDateText] = useState('');
   const [calories, setCalories] = useState('');
 
   function handleSave() {
-    if (description && validCalories.test(calories) && dateText && date) {
-      writeToDB({description, calories, date}, 'dietItems');
-      navigation.goBack();
-    } else {
-      Alert.alert('Invalid input', 
-        'Please check your input values');
-    }
+    saveHandler(description, calories, date, dateText);
   }
 
   function handleChangeDate(selectedDate) {

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TextInput, Keyboard,
-   TouchableWithoutFeedback, Alert } from 'react-native'
+   TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import { useContext, useState } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
@@ -14,7 +14,6 @@ import Spacings from '../constants/Spacings';
 
 const ActivityEntry = ({saveHandler}) => {
 
-  const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(null);
