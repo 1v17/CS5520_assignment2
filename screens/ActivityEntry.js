@@ -14,11 +14,11 @@ import { ItemsContext } from '../context/ItemsContext'
 import { ThemeContext } from '../context/ThemeContext'
 import Dimensions from '../constants/Dimensions';
 import Spacings from '../constants/Spacings';
+import { writeToDB } from '../firebase/FirebaseHelper';
 
 const ActivityEntry = () => {
 
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
-  const { addActivityItem } = useContext(ItemsContext);
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(null);
@@ -36,10 +36,7 @@ const ActivityEntry = () => {
   const [date, setDate] = useState(new Date()); // current date
   const [dateText, setDateText] = useState('');
   const navigation = useNavigation();
-
-  // function generateRandomId() {
-  //   return `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  // }
+  const collectionName = 'activityItems';
 
   function handleChangeDate(selectedDate) {
     setDate(selectedDate);
@@ -48,7 +45,7 @@ const ActivityEntry = () => {
 
   function handleSave() {
     if (name && validDuration.test(duration) && dateText && date) {
-      addActivityItem({name, duration, date, id: uuid.v4()});
+      writeToDB({name, duration, date}, collectionName);
       navigation.goBack();
     } else {
       Alert.alert('Invalid input', 
