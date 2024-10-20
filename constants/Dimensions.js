@@ -15,6 +15,9 @@ const Dimensions = {
 
   // buttons:
   hitSlop: 20,
+
+  // icons:
+  headerIconSize: 20,
 };
   
   export default Dimensions;

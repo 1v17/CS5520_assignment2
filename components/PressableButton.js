@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   defaultPressedStyle: {
     opacity: Colors.itemPressedOpacity,

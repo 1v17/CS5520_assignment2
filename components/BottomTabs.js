@@ -1,19 +1,26 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
 import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';
 import SettingScreen from '../screens/SettingScreen';
 import Colors from '../constants/Colors';
+import Spacings from '../constants/Spacings';
+import Dimensions from '../constants/Dimensions';
 import TextSizes from '../constants/TextSizes';
+import PressableButton from './PressableButton';
 
 const Tab = createBottomTabNavigator();
 
 function BottomTabs() {
 
   const navigation = useNavigation();
+
+  function handleAddActivity() {
+    navigation.navigate('ActivityEntry');
+  }
 
   return (
     <Tab.Navigator
@@ -56,11 +63,22 @@ function BottomTabs() {
         options={{ title: 'Activities',
           headerRight: () => {
             return (
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('ActivityEntry')}
-                color={Colors.primary}
-              />
+              <PressableButton 
+                pressHandler={handleAddActivity}
+                componentStyle={styles.headerButtonDefault}
+                pressedStyle={styles.headerButtonPressed}
+              >
+                <Ionicons 
+                  name="add" 
+                  size={Dimensions.headerIconSize} 
+                  color={Colors.headerText}
+                />
+                <Ionicons 
+                  name="accessibility" 
+                  size={Dimensions.headerIconSize} 
+                  color={Colors.headerText}
+                />
+              </PressableButton>
             );
           },
         }}
@@ -88,5 +106,15 @@ function BottomTabs() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  headerButtonDefault: {
+    backgroundColor: Colors.headerBackground,
+    margin: Spacings.mediumMargin,
+  },
+  headerButtonPressed: {
+    backgroundColor: Colors.headerBackground,
+  },
+});
 
 export default BottomTabs;
