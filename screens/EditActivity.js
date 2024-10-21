@@ -4,7 +4,7 @@ import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
 import { deleteFromDB, updateDB } from "../firebase/FirebaseHelper";
-import ActivityEntry from "../components/ActivityEntry";
+import Entry from "../components/Entry";
 import PressableButton from "../components/PressableButton";
 import Colors from "../constants/Colors";
 import Dimensions from "../constants/Dimensions";
@@ -92,13 +92,14 @@ const EditActivity = ({ navigation, route }) => {
   }
 
   return (
-    <ActivityEntry
-      name={name}
-      duration={duration}
+    <Entry
+      type={"activity"}
+      title={name}
+      amount={duration}
       date={date}
       dateText={dateText}
-      changeNameHandler={handleNameChange}
-      changeDurationHandler={handleDurationChange}
+      changeTitleHandler={handleNameChange}
+      changeAmountHandler={handleDurationChange}
       changeDateHandler={handleChangeDate}
       saveHandler={handleSaveAlert}
     />
