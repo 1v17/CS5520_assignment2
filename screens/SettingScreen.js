@@ -6,6 +6,7 @@ import Dimensions from '../constants/Dimensions'
 import ScreenBackground from '../components/ScreenBackground'
 import PressableButton from '../components/PressableButton'
 import { ThemeContext } from '../context/ThemeContext'
+import TextSizes from '../constants/TextSizes'
 
 const SettingScreen = () => {
 
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
+    fontSize: TextSizes.large,
   },
 });
 
