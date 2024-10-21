@@ -89,12 +89,12 @@ const Entry = ({
                       textAlignVertical: "top",
                     },
                   ]}
-                  value={description}
+                  value={title}
                   keyboardType="default"
                   blurOnSubmit={true}
                   multiline={true}
                   onChangeText={function (changedText) {
-                    setDescription(changedText);
+                    changeTitleHandler(changedText);
                   }}
                 />
               </>
