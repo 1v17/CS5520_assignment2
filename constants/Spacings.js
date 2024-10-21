@@ -7,6 +7,7 @@ const Spacings = {
   // gaps:
   narrowGap: 10,
   mediumGap: 20,
+  wideGap: 30,
 
   // paddings:
   extraNarrowPadding: "1%",

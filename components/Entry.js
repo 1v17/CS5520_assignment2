@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alighContent: "center",
+    alignItems: "center",
   },
   input: {
     height: Dimensions.singleLineInputHeight,
