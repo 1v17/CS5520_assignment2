@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import { writeToDB } from "../firebase/FirebaseHelper";
-import ActivityEntry from "../components/ActivityEntry";
+import Entry from "../components/Entry";
 
 const ActivityEntryScreen = () => {
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
@@ -38,13 +38,14 @@ const ActivityEntryScreen = () => {
   }
 
   return (
-    <ActivityEntry
-      name={name}
-      duration={duration}
+    <Entry
+      type={"activity"}
+      title={name}
+      amount={duration}
       date={date}
       dateText={dateText}
-      changeNameHandler={handleNameChange}
-      changeDurationHandler={handleDurationChange}
+      changeTitleHandler={handleNameChange}
+      changeAmountHandler={handleDurationChange}
       changeDateHandler={handleChangeDate}
       saveHandler={handleSave}
     />
