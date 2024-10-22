@@ -2,10 +2,12 @@ const Spacings = {
   // margins:
   narrowMargin: "2%",
   mediumMargin: "5%",
+  wideMargin: "7%",
 
   // gaps:
   narrowGap: 10,
   mediumGap: 20,
+  wideGap: 30,
 
   // paddings:
   extraNarrowPadding: "1%",

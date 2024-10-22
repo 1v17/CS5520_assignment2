@@ -1,19 +1,30 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import ActivityScreen from '../screens/ActivityScreen';
 import DietScreen from '../screens/DietScreen';
 import SettingScreen from '../screens/SettingScreen';
 import Colors from '../constants/Colors';
+import Spacings from '../constants/Spacings';
+import Dimensions from '../constants/Dimensions';
 import TextSizes from '../constants/TextSizes';
+import PressableButton from './PressableButton';
 
 const Tab = createBottomTabNavigator();
 
 function BottomTabs() {
 
   const navigation = useNavigation();
+
+  function handleAddActivity() {
+    navigation.navigate('ActivityEntry');
+  }
+
+  function handleAddDiet() {
+    navigation.navigate('DietEntry');
+  }
 
   return (
     <Tab.Navigator
@@ -56,11 +67,22 @@ function BottomTabs() {
         options={{ title: 'Activities',
           headerRight: () => {
             return (
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('ActivityEntry')}
-                color={Colors.primary}
-              />
+              <PressableButton 
+                pressHandler={handleAddActivity}
+                componentStyle={styles.headerButtonDefault}
+                pressedStyle={styles.headerButtonPressed}
+              >
+                <Ionicons 
+                  name="add" 
+                  size={Dimensions.iconSize} 
+                  color={Colors.headerText}
+                />
+                <Ionicons 
+                  name="accessibility" 
+                  size={Dimensions.iconSize} 
+                  color={Colors.headerText}
+                />
+              </PressableButton>
             );
           },
         }}
@@ -71,11 +93,22 @@ function BottomTabs() {
         options={{ title: 'Diet',
           headerRight: () => {
             return (
-              <Button
-                title="Add"
-                onPress={() => navigation.navigate('DietEntry')}
-                color={Colors.primary}
-              />
+              <PressableButton 
+                pressHandler={handleAddDiet}
+                componentStyle={styles.headerButtonDefault}
+                pressedStyle={styles.headerButtonPressed}
+              >
+                <Ionicons 
+                  name="add" 
+                  size={Dimensions.iconSize} 
+                  color={Colors.headerText}
+                />
+                <Ionicons 
+                  name="fast-food" 
+                  size={Dimensions.iconSize} 
+                  color={Colors.headerText}
+                />
+              </PressableButton>
             );
           },
          }}
@@ -88,5 +121,16 @@ function BottomTabs() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  headerButtonDefault: {
+    backgroundColor: Colors.headerBackground,
+    marginVertical: Spacings.narrowMargin,
+    marginHorizontal: Spacings.wideMargin,
+  },
+  headerButtonPressed: {
+    backgroundColor: Colors.headerBackground,
+  },
+});
 
 export default BottomTabs;
