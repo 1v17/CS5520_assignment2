@@ -92,6 +92,10 @@ const EditActivity = ({ navigation, route }) => {
     }
   }
 
+  function handleCheckbox() {
+    setIsSpecial(!isSpecial);
+  }
+
   return (
     <Entry
       type={"activity"}
@@ -104,6 +108,7 @@ const EditActivity = ({ navigation, route }) => {
       changeDateHandler={handleChangeDate}
       saveHandler={handleSaveAlert}
       showCheckBox={route.params.item.isSpecial}
+      checkboxHandler={handleCheckbox}
     />
   );
 };

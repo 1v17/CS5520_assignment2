@@ -73,7 +73,7 @@ const EditDiet = ({ navigation, route }) => {
   function handleSave() {
     updateDB(
       route.params.item.id,
-      { description, calories, date },
+      { description, calories, date, isSpecial },
       collectionName
     );
     navigation.goBack();
@@ -96,6 +96,10 @@ const EditDiet = ({ navigation, route }) => {
     }
   }
 
+  function handleCheckbox() {
+    setIsSpecial(!isSpecial);
+  }
+
   return (
     <Entry
       type={"diet"}
@@ -108,6 +112,7 @@ const EditDiet = ({ navigation, route }) => {
       changeDateHandler={handleChangeDate}
       saveHandler={handleSaveAlert}
       showCheckBox={route.params.item.isSpecial}
+      checkboxHandler={handleCheckbox}
     />
   );
 };

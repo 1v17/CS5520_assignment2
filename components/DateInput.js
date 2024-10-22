@@ -54,6 +54,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputBackground,
     padding: Spacings.mediumPadding,
   },
+  datePicker: {
+    position: 'relative',
+    zIndex: 1000, 
+  }
 });
 
 export default DateInput

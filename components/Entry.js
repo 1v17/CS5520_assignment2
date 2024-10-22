@@ -30,6 +30,7 @@ const Entry = ({
   changeDateHandler,
   saveHandler,
   showCheckBox = false,
+  checkboxHandler = () => {},
 }) => {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
@@ -42,6 +43,7 @@ const Entry = ({
     { label: "Cycling", value: "Cycling" },
     { label: "Hiking", value: "Hiking" },
   ]);
+  const [isChecked, setChecked] = useState(false);
 
   function handleDropDownChange(value) {
     changeTitleHandler(value);
@@ -123,14 +125,22 @@ const Entry = ({
               changeDateHandler={changeDateHandler}
             />
           </View>
-          <View style={styles.buttonSection}>
-            {showCheckBox && (
+          <View style={styles.lowerView}>
+            {showCheckBox && ( // the checkbox is only shown if the item is marked as special
               <View style={styles.checkboxWrapper}>
                 <Text style={{ color: theme.textColor }}>
-                  This item is marked as special.
-                  Select the checkbox to if you would like to approve it.
+                  This item is marked as special. Select the checkbox to if you
+                  would like to approve it.
                 </Text>
-                <Checkbox />
+                <Checkbox
+                  value={isChecked}
+                  onValueChange={() => {
+                    setChecked(!isChecked);
+                    checkboxHandler();
+                  }}
+                  color={isChecked ? theme.primaryColor : undefined}
+                  style={{ borderColor: theme.primaryColor }}
+                />
               </View>
             )}
             <ButtonPair saveHandler={saveHandler} />
@@ -144,16 +154,16 @@ const Entry = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "spece-between",
     alignContent: "center",
   },
   inputSection: {
     flex: 2,
     justifyContent: "center",
-    alignContent: "flex-start",
+    alignContent: "center",
     padding: Spacings.widePadding,
   },
-  buttonSection: {
+  lowerView: {
     flex: 1,
     justifyContent: "center",
     alighContent: "center",

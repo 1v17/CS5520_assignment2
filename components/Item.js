@@ -17,12 +17,7 @@ const Item = ({ item, type }) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
   const formattedDate = item.date.toDate().toDateString();
-  const showSpecialMark =
-    item.isSpecial ||
-    (type === "activity" &&
-      (item.name === "Running" || item.name === "Weights") &&
-      item.duration > longDuration) ||
-    (type === "diet" && item.calories > largeCalories);
+  const showSpecialMark = item.isSpecial;
 
   function handlePress() {
     if (type === "activity") {
