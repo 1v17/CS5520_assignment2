@@ -19,6 +19,7 @@ const EditActivity = ({ navigation, route }) => {
   const [dateText, setDateText] = useState(
     route.params.item.date.toDate().toDateString()
   );
+  const [isSpecial, setIsSpecial] = useState(route.params.item.isSpecial);
 
   useEffect(() => {
     navigation.setOptions({
@@ -70,7 +71,7 @@ const EditActivity = ({ navigation, route }) => {
   }
 
   function handleSave() {
-    updateDB(route.params.item.id, { name, duration, date }, collectionName);
+    updateDB(route.params.item.id, { name, duration, date, isSpecial }, collectionName);
     navigation.goBack();
   }
 
@@ -102,6 +103,7 @@ const EditActivity = ({ navigation, route }) => {
       changeAmountHandler={handleDurationChange}
       changeDateHandler={handleChangeDate}
       saveHandler={handleSaveAlert}
+      showCheckBox={route.params.item.isSpecial}
     />
   );
 };

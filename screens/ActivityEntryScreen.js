@@ -7,6 +7,7 @@ import { writeToDB } from "../firebase/FirebaseHelper";
 import Entry from "../components/Entry";
 
 const ActivityEntryScreen = () => {
+  const longDuration = 60;
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const navigation = useNavigation();
   const collectionName = "activityItems";
@@ -17,7 +18,10 @@ const ActivityEntryScreen = () => {
 
   function handleSave() {
     if (name && validDuration.test(duration) && dateText && date) {
-      writeToDB({ name, duration, date }, collectionName);
+      const isSpecial =
+        (name === "Running" || name === "Weights") &&
+        Number(duration) > longDuration;
+      writeToDB({ name, duration, date, isSpecial }, collectionName);
       navigation.goBack();
     } else {
       Alert.alert("Invalid input", "Please check your input values");

@@ -18,10 +18,11 @@ const Item = ({ item, type }) => {
   const navigation = useNavigation();
   const formattedDate = item.date.toDate().toDateString();
   const showSpecialMark =
-    type === "activity"
-      ? (item.name === "Running" || item.name === "Weights") &&
-        Number(item.duration) > longDuration
-      : Number(item.calories) > largeCalories;
+    item.isSpecial ||
+    (type === "activity" &&
+      (item.name === "Running" || item.name === "Weights") &&
+      item.duration > longDuration) ||
+    (type === "diet" && item.calories > largeCalories);
 
   function handlePress() {
     if (type === "activity") {

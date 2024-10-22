@@ -17,6 +17,7 @@ import DateInput from "./DateInput";
 import { ThemeContext } from "../context/ThemeContext";
 import Dimensions from "../constants/Dimensions";
 import Spacings from "../constants/Spacings";
+import Checkbox from "expo-checkbox";
 
 const Entry = ({
   type,
@@ -75,7 +76,8 @@ const Entry = ({
                   />
                 </>
               </>
-            ) : ( // for diet entry and diet screens
+            ) : (
+              // for diet entry and diet screens
               <>
                 <Text style={[styles.inputLabel, { color: theme.textColor }]}>
                   Description *
@@ -122,7 +124,15 @@ const Entry = ({
             />
           </View>
           <View style={styles.buttonSection}>
-            {/* TODO: add checkbox here */}
+            {showCheckBox && (
+              <View style={styles.checkboxWrapper}>
+                <Text style={{ color: theme.textColor }}>
+                  This item is marked as special.
+                  Select the checkbox to if you would like to approve it.
+                </Text>
+                <Checkbox />
+              </View>
+            )}
             <ButtonPair saveHandler={saveHandler} />
           </View>
         </ScreenBackground>
@@ -138,7 +148,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   inputSection: {
-    flex: 3,
+    flex: 2,
     justifyContent: "center",
     alignContent: "flex-start",
     padding: Spacings.widePadding,
@@ -160,6 +170,14 @@ const styles = StyleSheet.create({
   inputLabel: {
     marginTop: Spacings.mediumMargin,
     padding: Spacings.extraNarrowPadding,
+  },
+  checkboxWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Spacings.mediumGap,
+    marginVertical: Spacings.narrowMargin,
+    marginHorizontal: Spacings.wideMargin,
+    padding: Spacings.mediumPadding,
   },
 });
 

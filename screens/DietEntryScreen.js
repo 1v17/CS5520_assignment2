@@ -1,27 +1,27 @@
-import { Alert } from 'react-native';
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { Alert } from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
-import { writeToDB } from '../firebase/FirebaseHelper';
-import Entry from '../components/Entry';
+import { writeToDB } from "../firebase/FirebaseHelper";
+import Entry from "../components/Entry";
 
 const DietEntryScreen = () => {
-
+  const largeCalories = 800;
   const validCalories = /^[1-9]\d*$/; // positive integers without leading zeros
   const navigation = useNavigation();
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date()); // current date
-  const [dateText, setDateText] = useState('');
-  const [calories, setCalories] = useState('');
+  const [dateText, setDateText] = useState("");
+  const [calories, setCalories] = useState("");
 
   function handleSave() {
     if (description && validCalories.test(calories) && dateText && date) {
-      writeToDB({description, calories, date}, 'dietItems');
+      const isSpecial = Number(calories) > largeCalories;
+      writeToDB({ description, calories, date, isSpecial }, "dietItems");
       navigation.goBack();
     } else {
-      Alert.alert('Invalid input', 
-        'Please check your input values');
+      Alert.alert("Invalid input", "Please check your input values");
     }
   }
 
@@ -39,8 +39,8 @@ const DietEntryScreen = () => {
   }
 
   return (
-    <Entry 
-      type={'diet'}
+    <Entry
+      type={"diet"}
       title={description}
       amount={calories}
       date={date}
@@ -50,7 +50,7 @@ const DietEntryScreen = () => {
       changeDateHandler={handleChangeDate}
       saveHandler={handleSave}
     />
-  )
-}
+  );
+};
 
-export default DietEntryScreen
+export default DietEntryScreen;

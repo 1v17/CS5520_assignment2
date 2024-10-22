@@ -19,6 +19,7 @@ const EditDiet = ({ navigation, route }) => {
   const [dateText, setDateText] = useState(
     route.params.item.date.toDate().toDateString()
   );
+  const [isSpecial, setIsSpecial] = useState(route.params.item.isSpecial);
 
   useEffect(() => {
     navigation.setOptions({
@@ -106,6 +107,7 @@ const EditDiet = ({ navigation, route }) => {
       changeAmountHandler={handleCaloriesChange}
       changeDateHandler={handleChangeDate}
       saveHandler={handleSaveAlert}
+      showCheckBox={route.params.item.isSpecial}
     />
   );
 };
