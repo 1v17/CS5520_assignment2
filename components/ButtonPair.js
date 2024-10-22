@@ -41,7 +41,6 @@ const ButtonPair = ({ saveHandler }) => {
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    flex: 1,
     marginVertical: Spacings.mediumMargin,
     flexDirection: "row",
     alignItems: "flex-start",

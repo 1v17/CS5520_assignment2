@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   inputSection: {
-    flex: 2,
+    flex: 2.5,
     justifyContent: "center",
     alignContent: "center",
     padding: Spacings.widePadding,
