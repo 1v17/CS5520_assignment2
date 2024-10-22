@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import { useContext } from 'react'
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { useContext } from 'react';
 
-import Dimensions from '../constants/Dimensions'
-import ScreenBackground from '../components/ScreenBackground'
-import PressableButton from '../components/PressableButton'
-import { ThemeContext } from '../context/ThemeContext'
-import TextSizes from '../constants/TextSizes'
+import Dimensions from '../constants/Dimensions';
+import ScreenBackground from '../components/ScreenBackground';
+import PressableButton from '../components/PressableButton';
+import { ThemeContext } from '../context/ThemeContext';
+import TextSizes from '../constants/TextSizes';
 
 const SettingScreen = () => {
 

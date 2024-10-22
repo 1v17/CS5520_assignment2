@@ -1,12 +1,12 @@
-import { TextInput, StyleSheet } from 'react-native'
-import DateTimePicker from '@react-native-community/datetimepicker'
-import React from 'react'
-import { useState, useContext } from 'react'
+import { TextInput, StyleSheet } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import React from 'react';
+import { useState, useContext } from 'react';
 
-import { ThemeContext } from '../context/ThemeContext'
-import Colors from '../constants/Colors'
-import Spacings from '../constants/Spacings'
-import Dimensions from '../constants/Dimensions'
+import { ThemeContext } from '../context/ThemeContext';
+import Colors from '../constants/Colors';
+import Spacings from '../constants/Spacings';
+import Dimensions from '../constants/Dimensions';
 
 const DateInput = ({date, dateText, changeDateHandler}) => {
 

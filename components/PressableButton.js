@@ -1,11 +1,11 @@
-import { Pressable, StyleSheet } from 'react-native'
-import React from 'react'
-import { useContext } from 'react'
+import { Pressable, StyleSheet } from 'react-native';
+import React from 'react';
+import { useContext } from 'react';
 
-import Colors from '../constants/Colors'
-import Dimensions from '../constants/Dimensions'
-import Spacings from '../constants/Spacings'
-import { ThemeContext } from '../context/ThemeContext'
+import Colors from '../constants/Colors';
+import Dimensions from '../constants/Dimensions';
+import Spacings from '../constants/Spacings';
+import { ThemeContext } from '../context/ThemeContext';
 
 
 

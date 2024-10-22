@@ -1,7 +1,7 @@
-import { Alert } from 'react-native'
-import React from 'react'
+import { Alert } from 'react-native';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react'
+import { useState } from 'react';
 
 import { writeToDB } from '../firebase/FirebaseHelper';
 import Entry from '../components/Entry';

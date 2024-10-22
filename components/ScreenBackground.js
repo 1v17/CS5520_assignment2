@@ -1,9 +1,9 @@
-import { View, StyleSheet} from 'react-native'
-import React from 'react'
-import { useContext } from 'react'
+import { View, StyleSheet} from 'react-native';
+import React from 'react';
+import { useContext } from 'react';
 
-import Colors from '../constants/Colors'
-import { ThemeContext } from '../context/ThemeContext'
+import Colors from '../constants/Colors';
+import { ThemeContext } from '../context/ThemeContext';
 
 const ScreenBackground = ({children}) => {
 

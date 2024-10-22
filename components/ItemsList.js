@@ -1,8 +1,8 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet } from 'react-native';
+import React from 'react';
 
-import Item from './Item'
-import Spacings from '../constants/Spacings'
+import Item from './Item';
+import Spacings from '../constants/Spacings';
 
 const ItemsList = ({items, type}) => {
 

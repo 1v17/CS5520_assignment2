@@ -1,10 +1,10 @@
-import { SafeAreaView, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { SafeAreaView, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
 
-import ScreenBackground from '../components/ScreenBackground'
-import ItemsList from '../components/ItemsList'
-import { database } from '../firebase/FirebaseSetup'
+import ScreenBackground from '../components/ScreenBackground';
+import ItemsList from '../components/ItemsList';
+import { database } from '../firebase/FirebaseSetup';
 
 const ActivityScreen = () => {
 
