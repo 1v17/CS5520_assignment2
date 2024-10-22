@@ -11,6 +11,7 @@ import Dimensions from "../constants/Dimensions";
 import Spacings from "../constants/Spacings";
 
 const EditActivity = ({ navigation, route }) => {
+  const longDuration = 60;
   const validDuration = /^[1-9]\d*$/; // positive integers without leading zeros
   const collectionName = "activityItems";
   const [name, setName] = useState(route.params.item.name);
@@ -64,14 +65,26 @@ const EditActivity = ({ navigation, route }) => {
 
   function handleNameChange(selectedName) {
     setName(selectedName);
+    setIsSpecial(
+      (name === "Running" || name === "Weights") &&
+        Number(duration) > longDuration
+    );
   }
 
   function handleDurationChange(selectedDuration) {
     setDuration(selectedDuration);
+    setIsSpecial(
+      (name === "Running" || name === "Weights") &&
+        Number(duration) > longDuration
+    );
   }
 
   function handleSave() {
-    updateDB(route.params.item.id, { name, duration, date, isSpecial }, collectionName);
+    updateDB(
+      route.params.item.id,
+      { name, duration, date, isSpecial },
+      collectionName
+    );
     navigation.goBack();
   }
 

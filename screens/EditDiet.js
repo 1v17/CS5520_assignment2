@@ -11,6 +11,7 @@ import Dimensions from "../constants/Dimensions";
 import Spacings from "../constants/Spacings";
 
 const EditDiet = ({ navigation, route }) => {
+  const largeCalories = 800;
   const validCalories = /^[1-9]\d*$/; // positive integers without leading zeros
   const collectionName = "dietItems";
   const [description, setDescription] = useState(route.params.item.description);
@@ -68,6 +69,7 @@ const EditDiet = ({ navigation, route }) => {
 
   function handleCaloriesChange(selectedCalories) {
     setCalories(selectedCalories);
+    setIsSpecial(calories >= largeCalories);
   }
 
   function handleSave() {
